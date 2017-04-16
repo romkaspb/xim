@@ -1,0 +1,15 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+.table {
+  width: 50%;
+}
+
+.table-wide {
+  width: 100%;
+}
+
+.center-table
+{
+  margin: 0 auto !important;
+  float: none !important;
+}

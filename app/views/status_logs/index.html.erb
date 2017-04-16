@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<h3>Status Logs for <%= @plane.name %></h3>
+<% if @status_logs.any? %>
+  <table class="table table-wide center-table">
+    <thead>
+      <tr>
+        <th>Status was</th>
+        <th>Created at</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @status_logs.each do |status_log| %>
+        <tr>
+          <td><%= status_log.status.humanize %></td>
+          <td><%= status_log.created_at %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <h4>No logs</h4>
+<% end %>

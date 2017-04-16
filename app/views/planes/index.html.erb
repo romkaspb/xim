@@ -1,0 +1,33 @@
+<h1 class="text-center">Planes</h1>
+
+<table class="table table-hover center-table">
+  <thead>
+    <tr>
+      <th class="text-center"><input id="checkall" type="checkbox"></th>
+      <th class="text-center">Name</th>
+      <th class="text-center">Status</th>
+      <th class="text-center">Fly!</th>
+      <th class="text-center">History</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @planes.each do |plane| %>
+      <tr class="text-center" data-id="<%= plane.id %>">
+        <td><input value="<%= plane.id  %>" name="plane" type="checkbox" <% unless (plane.status == "shed") then %>disabled<% end %>></td>
+        <td><%= plane.name %></td>
+        <td class="td__status"><%= plane.status.humanize %></td>
+        <td>
+          <% if (plane.status == "shed") then %>
+           <button type="button" data-id="<%= plane.id  %>" data-action="fly" class="btn btn-primary center-block">Fly!</button>
+          <% end %>
+        </td>
+        <td>
+          <button type="button" data-id="<%= plane.id  %>" data-toggle="modal" data-target="#logs" data-action="history" class="btn btn-success btn-success-logs"  <% if (plane.status == "shed") then %>style="display:none;"<% end %>>History</button>
+          <% if (plane.status == "shed") then %><span>No history</span><% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<button type="button" data-action="flyall" class="btn btn-primary center-block">Fly!</button>
+<%= render partial: 'planes/popup_logs'  %>
